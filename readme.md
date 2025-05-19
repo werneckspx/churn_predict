@@ -101,7 +101,7 @@ Para rodar o projeto, siga os passos abaixo para baixar o dataset original do Ka
 
 ### 2. Transformação de variáveis categóricas
 - As colunas `sexo`, `assinatura` e `duracao_contrato` são convertidas de texto para números usando o `LabelEncoder`.  
-  Isso é necessário porque modelos de machine learning trabalham apenas com números.
+  Isso é necessário porque foram utilizados modelos de machine learning.
 
 ### 3. Normalização dos dados
 - As colunas numéricas (como idade, tempo como cliente, total gasto, etc.) são normalizadas com o `StandardScaler`.  
