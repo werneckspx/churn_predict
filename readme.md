@@ -1,32 +1,8 @@
 # Churn Predict API
-
-[![Build Status](https://img.shields.io/github/actions/workflow/status/SEU_USUARIO/SEU_REPOSITORIO/ci.yml?branch=main)](https://github.com/SEU_USUARIO/SEU_REPOSITORIO/actions)
-[![Coverage](https://img.shields.io/codecov/c/github/SEU_USUARIO/SEU_REPOSITORIO)](https://codecov.io/gh/SEU_USUARIO/SEU_REPOSITORIO)
-[![License](https://img.shields.io/github/license/SEU_USUARIO/SEU_REPOSITORIO)](LICENSE)
-<!-- [![PyPI version](https://img.shields.io/pypi/v/seu-pacote.svg)](https://pypi.org/project/seu-pacote/) -->
-
 ---
-
-## Sumário
-
-- [Visão Geral](#visão-geral)
-- [Links Rápidos](#links-rápidos)
-- [Como rodar](#como-rodar)
-- [Como obter os dados](#como-obter-os-dados)
-- [Exemplo de uso](#exemplo-de-uso)
-- [Estrutura do Projeto](#estrutura-do-projeto)
-- [Como funciona o pipeline de dados e análise](#como-funciona-o-pipeline-de-dados-e-análise)
-- [Observações](#observações)
-- [Principais observações analíticas](#principais-observações-analíticas)
-- [Changelog](#changelog)
-- [Licença](#licença)
-- [Contribuição](#contribuição)
-
----
-
 ## Visão Geral
 
-Este projeto é uma API para previsão de cancelamento de clientes (churn) e análise de perfil, utilizando modelos de Machine Learning treinados em Python.
+Este projeto é uma API para previsão de cancelamento de clientes (churn) e análise de perfil, utilizando os modelos de Regressão Logística e Random Forest.
 
 ---
 
@@ -34,14 +10,13 @@ Este projeto é uma API para previsão de cancelamento de clientes (churn) e an�
 
 - [Documentação interativa (Swagger)](http://localhost:8000/docs)
 - [Dataset no Kaggle](https://www.kaggle.com/datasets/adrianosantosdev/dados-de-cancelamento-de-contrato-do-cliente)
-- [Como contribuir](#contribuição)
 
 ---
 
 ## Screenshot
 
 ![Swagger UI Screenshot](docs/image.png)
-<!-- Adicione um screenshot do Swagger ou um gif curto mostrando a API em ação -->
+![Redoc Screenshot](docs/redoc.png)
 
 ---
 
@@ -95,6 +70,7 @@ churn-predict/
 │   └── train.py
 ├── model/
 │   ├── modelo_regressao_logistica.pkl
+|   ├── modelo_random_forest.pkl
 │   ├── scaler.pkl
 │   ├── kmeans.pkl
 │   └── cluster_stats.pkl
@@ -102,6 +78,9 @@ churn-predict/
 │   └── cancelamentos.csv
 ├── requirements.txt
 └── README.md
+└── docs/
+    └── swagger.png
+    └── redoc.png
 ```
 ## Como obter os dados
 
@@ -149,15 +128,6 @@ Para rodar o projeto, siga os passos abaixo para baixar o dataset original do Ka
 - O algoritmo KMeans agrupa os clientes em 8 perfis (clusters) com características semelhantes.
 - Para cada cluster, são calculadas as médias das variáveis, ajudando a entender o perfil típico de cada grupo.
 - Um gráfico mostra a distribuição de cancelamentos em cada cluster.
-
----
-
-## Observações
-
-- O **Random Forest** apresentou acurácia significativamente maior (por exemplo, 0.99) em relação à Regressão Logística (0.85) nos testes.
-- Isso pode indicar que o Random Forest está capturando padrões mais complexos nos dados, mas também pode ser um sinal de overfitting, especialmente se o conjunto de teste não for totalmente independente ou se houver vazamento de dados.
-- É importante analisar não só a acurácia, mas também a matriz de confusão, precisão, recall e f1-score para garantir que o modelo está generalizando bem e não apenas "decorando" os dados.
-
 ---
 
 ## Outras observações importantes
@@ -179,6 +149,47 @@ Para rodar o projeto, siga os passos abaixo para baixar o dataset original do Ka
 
 ## Principais observações analíticas
 
+### Regressão Logística 
+
+- **Acurácia:** 0.85
+- **Relatório de Classificação:**
+    - Precisão (classe 0): 0.81
+    - Recall (classe 0): 0.85
+    - F1-score (classe 0): 0.83
+    - Precisão (classe 1): 0.88
+    - Recall (classe 1): 0.85
+    - F1-score (classe 1): 0.87
+- **Matriz de Confusão:**
+    ```
+    [[64676 11598]
+     [14819 85239]]
+    ```
+- **Observação:**  
+  O modelo de regressão logística apresenta desempenho equilibrado entre as classes, com boa capacidade de generalização.
+
+---
+
+### Random Forest
+
+- **Acurácia:** 0.99
+- **Relatório de Classificação:**
+    - Precisão (classe 0): 1.00
+    - Recall (classe 0): 1.00
+    - F1-score (classe 0): 1.00
+    - Precisão (classe 1): 1.00
+    - Recall (classe 1): 1.00
+    - F1-score (classe 1): 1.00
+- **Matriz de Confusão:**
+    ```
+    [[76274     0]
+     [    2 100056]]
+    ```
+- **Observação Importante:**  
+  O Random Forest atingiu acurácia quase perfeita no conjunto de teste. Isso pode indicar que o modelo está capturando padrões complexos, mas também pode ser um sinal de overfitting.  
+  Recomenda-se sempre analisar outras métricas, a matriz de confusão e, se possível, testar em dados realmente novos para garantir que o modelo está generalizando bem.
+
+---
+
 - **Distribuição de Cancelamentos:**  
   Aproximadamente 57% dos clientes cancelaram, indicando leve desbalanceamento.
 - **Correlação:**  
@@ -187,3 +198,10 @@ Para rodar o projeto, siga os passos abaixo para baixar o dataset original do Ka
   Os 8 clusters identificados pelo KMeans apresentam perfis distintos, com alguns grupos tendo taxas de cancelamento próximas de 100% e outros bem menores, permitindo insights para retenção.
 
 ---
+
+# Contribuição
+
+1. Faça um fork do repositório.
+2. Crie uma branch com sua feature ou correção.
+3. Envie um Pull Request bem descrito.
+4. Aguarde revisão.
