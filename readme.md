@@ -6,13 +6,6 @@ Este projeto é uma API para previsão de cancelamento de clientes (churn) e an�
 
 ---
 
-## Links Rápidos
-
-- [Documentação interativa (Swagger)](http://localhost:8000/docs)
-- [Dataset no Kaggle](https://www.kaggle.com/datasets/adrianosantosdev/dados-de-cancelamento-de-contrato-do-cliente)
-
----
-
 ## Screenshot
 
 ![Swagger UI Screenshot](docs/image.png)
