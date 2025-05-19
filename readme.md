@@ -6,10 +6,14 @@ Este projeto é uma API para previsão de cancelamento de clientes (churn) e an�
 
 ---
 
-## Screenshot
+## Interface da API
 
-![Swagger UI Screenshot](docs/swagger.png)
-![Redoc Screenshot](docs/redoc.png)
+A documentação interativa está disponível tanto via Swagger quanto ReDoc:
+
+| Swagger UI                          | ReDoc                               |
+|------------------------------------|-------------------------------------|
+| ![Swagger_UI](docs/swagger.png)    | ![ReDoc](docs/redoc.png)            |
+
 
 ---
 
