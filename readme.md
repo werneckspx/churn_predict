@@ -8,7 +8,7 @@ Este projeto é uma API para previsão de cancelamento de clientes (churn) e an�
 
 ## Screenshot
 
-![Swagger UI Screenshot](docs/image.png)
+![Swagger UI Screenshot](docs/swagger.png)
 ![Redoc Screenshot](docs/redoc.png)
 
 ---
